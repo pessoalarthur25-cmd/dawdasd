@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Prova de Física</title>
+
+<style>
+body {
+    font-family: Arial;
+    background: #f0f0f0;
+    padding: 20px;
+}
+
+.questao {
+    background: white;
+    padding: 15px;
+    margin-bottom: 10px;
+    border-radius: 8px;
+}
+
+input {
+    padding: 5px;
+    width: 100px;
+}
+
+button {
+    padding: 10px 20px;
+    font-size: 16px;
+    cursor: pointer;
+}
+
+.erro {
+    color: red;
+    font-size: 14px;
+}
+</style>
+</head>
+
+<body>
+
+<h1>Prova de Física - 2º Ano</h1>
+
+<div id="prova"></div>
+
+<button onclick="corrigir()">Corrigir</button>
+
+<div id="resultado"></div>
+
+<script>
+const questoes = [
+{q:"1) 100 km em 2h → velocidade?",r:50},
+{q:"2) 60m em 3s → velocidade?",r:20},
+{q:"3) a=2 por 5s → v?",r:10},
+{q:"4) queda livre 3s → v?",r:30},
+{q:"5) m=2, a=5 → F?",r:10},
+{q:"6) F=10, d=5 → W?",r:50},
+{q:"7) m=2, v=4 → Ec?",r:16},
+{q:"8) m=2, h=5 → Ep?",r:100},
+{q:"9) F=20, A=2 → P?",r:10},
+{q:"10) m=10, V=2 → d?",r:5},
+{q:"11) m=1, c=1, ΔT=20 → Q?",r:20},
+{q:"12) 10C em 2s → I?",r:5},
+{q:"13) V=10, R=2 → I?",r:5},
+{q:"14) 100J em 10s → P?",r:10},
+{q:"15) T=2 → f?",r:0.5},
+{q:"16) λ=2, f=5 → v?",r:10},
+{q:"17) ΔT=10, coef=1, L0=2 → ΔL?",r:20},
+{q:"18) d=1, g=10, h=2 → P?",r:20},
+{q:"19) F=10 por 2s → I?",r:20},
+{q:"20) m=2, v=3 → p?",r:6}
+];
+
+const prova = document.getElementById("prova");
+
+questoes.forEach((item,i)=>{
+    const div = document.createElement("div");
+    div.className = "questao";
+    div.innerHTML = `
+        <p>${item.q}</p>
+        <input type="number" step="0.01" id="q${i}">
+        <div id="erro${i}" class="erro"></div>
+    `;
+    prova.appendChild(div);
+});
+
+function corrigir(){
+    let acertos = 0;
+    let erros = 0;
+
+    questoes.forEach((item,i)=>{
+        const valor = parseFloat(document.getElementById("q"+i).value);
+        const erroDiv = document.getElementById("erro"+i);
+
+        erroDiv.innerText = "";
+
+        if(isNaN(valor)){
+            erros++;
+            erroDiv.innerText = "Resposta vazia";
+            return;
+        }
+
+        if(Math.abs(valor - item.r) < 0.01){
+            acertos++;
+            return;
+        }
+
+        erros++;
+        erroDiv.innerText = "Correto: " + item.r;
+    });
+
+    document.getElementById("resultado").innerText =
+        "Acertos: " + acertos + " | Erros: " + erros;
+}
+</script>
+
+</body>
+</html>

@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<title>Prova de Física</title>
+<style>
+    body {
+        font-family: Arial;
+        padding: 20px;
+        background: #f5f5f5;
+    }
+    .questao {
+        background: white;
+        padding: 15px;
+        margin-bottom: 10px;
+        border-radius: 8px;
+    }
+    input {
+        margin-top: 5px;
+        padding: 5px;
+        width: 100px;
+    }
+    button {
+        padding: 10px 20px;
+        font-size: 16px;
+        cursor: pointer;
+    }
+    #resultado {
+        margin-top: 20px;
+        font-size: 18px;
+        font-weight: bold;
+    }
+</style>
+</head>
+<body>
+
+<h1>Prova de Física - 2º Ano</h1>
+
+<div id="prova"></div>
+
+<button onclick="corrigir()">Corrigir Prova</button>
+
+<div id="resultado"></div>
+
+<script>
+const questoes = [
+    {q: "1) Velocidade média: um carro percorre 100 km em 2 h. Qual a velocidade (km/h)?", r: 50},
+    {q: "2) Um móvel percorre 60 m em 3 s. Velocidade (m/s)?", r: 20},
+    {q: "3) Um objeto acelera 2 m/s² por 5 s. Qual a velocidade final (m/s)?", r: 10},
+    {q: "4) Queda livre: g = 10. Tempo 3 s. Velocidade (m/s)?", r: 30},
+    {q: "5) Massa 2 kg, aceleração 5 m/s². Força (N)?", r: 10},
+    {q: "6) Trabalho: força 10 N por 5 m. Trabalho (J)?", r: 50},
+    {q: "7) Energia cinética: m=2 kg, v=4 m/s. Ec (J)?", r: 16},
+    {q: "8) Energia potencial: m=2 kg, h=5 m, g=10. Ep (J)?", r: 100},
+    {q: "9) Pressão: força 20 N em área 2 m². Pressão (Pa)?", r: 10},
+    {q: "10) Densidade: massa 10 kg, volume 2 m³. (kg/m³)?", r: 5},
+    {q: "11) Calor: Q = m·c·ΔT. m=1, c=1, ΔT=20. Q?", r: 20},
+    {q: "12) Corrente: Q=10C em 2s. I (A)?", r: 5},
+    {q: "13) Lei de Ohm: V=10V, R=2Ω. Corrente (A)?", r: 5},
+    {q: "14) Potência: trabalho 100 J em 10 s. (W)?", r: 10},
+    {q: "15) Frequência: período 2 s. f (Hz)?", r: 0.5},
+    {q: "16) Velocidade da onda: λ=2 m, f=5 Hz. v?", r: 10},
+    {q: "17) Dilatação: ΔT=10, coef=1, L0=2. ΔL?", r: 20},
+    {q: "18) Pressão hidrostática: d=1, g=10, h=2. P?", r: 20},
+    {q: "19) Impulso: F=10 N por 2 s. I?", r: 20},
+    {q: "20) Quantidade de movimento: m=2 kg, v=3 m/s. p?", r: 6}
+];
+
+const provaDiv = document.getElementById("prova");
+
+questoes.forEach((item, index) => {
+    const div = document.createElement("div");
+    div.className = "questao";
+
+    div.innerHTML = `
+        <p>${item.q}</p>
+        <input type="number" step="0.01" id="q${index}">
+    `;
+
+    provaDiv.appendChild(div);
+});
+
+function corrigir() {
+    let acertos = 0;
+    let erros = 0;
+
+    questoes.forEach((item, index) => {
+        const input = document.getElementById("q" + index);
+        const valor = parseFloat(input.value);
+
+        if (isNaN(valor)) {
+            erros++;
+            return;
+        }
+
+        if (Math.abs(valor - item.r) < 0.01) {
+            acertos++;
+            return;
+        }
+
+        erros++;
+    });
+
+    document.getElementById("resultado").innerText =
+        "Acertos: " + acertos + " | Erros: " + erros;
+}
+</script>
+
+</body>
+</html>

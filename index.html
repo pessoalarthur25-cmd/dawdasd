@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Prova de Física</title>
+<title>Prova de Termologia</title>
 
 <style>
 body {
@@ -27,7 +27,6 @@ input {
 button {
     padding: 10px 20px;
     font-size: 16px;
-    cursor: pointer;
 }
 
 .erro {
@@ -39,7 +38,7 @@ button {
 
 <body>
 
-<h1>Prova de Física - 2º Ano</h1>
+<h1>Prova de Física - Termologia</h1>
 
 <div id="prova"></div>
 
@@ -49,45 +48,47 @@ button {
 
 <script>
 const questoes = [
-{q:"1) Um carro viaja de uma cidade a outra percorrendo 100 km em 2 horas. Considerando o movimento uniforme, calcule a velocidade média do carro em km/h.",r:50},
 
-{q:"2) Um ciclista percorre uma estrada reta de 60 metros em 3 segundos. Considerando movimento uniforme, determine sua velocidade em m/s.",r:20},
+{q:"1) Um termômetro marca 20°C. Converta essa temperatura para Fahrenheit. Considere F = (9/5)C + 32.", r:68},
 
-{q:"3) Um objeto parte do repouso e sofre aceleração constante de 2 m/s² durante 5 segundos. Calcule sua velocidade final.",r:10},
+{q:"2) Um dia está com temperatura de 68°F. Converta para Celsius.", r:20},
 
-{q:"4) Um corpo é abandonado do repouso em queda livre durante 3 segundos. Considere g = 10 m/s². Determine a velocidade final.",r:30},
+{q:"3) Um laboratório registra 300 K. Converta para Celsius. (K = C + 273)", r:27},
 
-{q:"5) Um bloco de massa 2 kg sofre aceleração de 5 m/s². Determine a força resultante aplicada.",r:10},
+{q:"4) A temperatura de um corpo varia de 20°C para 30°C. Determine a variação de temperatura.", r:10},
 
-{q:"6) Uma força constante de 10 N atua sobre um objeto, deslocando-o 5 metros. Calcule o trabalho realizado.",r:50},
+{q:"5) Uma barra de 2 m sofre aumento de temperatura de 10°C. Coeficiente linear = 0,01. Calcule a dilatação linear.", r:0.2},
 
-{q:"7) Um corpo de massa 2 kg move-se com velocidade de 4 m/s. Determine sua energia cinética.",r:16},
+{q:"6) Uma chapa de área 5 m² sofre variação de temperatura de 10°C. Coeficiente superficial = 0,02. Calcule a dilatação.", r:1},
 
-{q:"8) Um objeto de massa 2 kg está a uma altura de 5 metros. Considere g = 10. Determine a energia potencial.",r:100},
+{q:"7) Um bloco de volume 2 m³ sofre variação de 10°C. Coeficiente volumétrico = 0,03. Calcule a dilatação.", r:0.6},
 
-{q:"9) Uma força de 20 N atua sobre uma área de 2 m². Calcule a pressão exercida.",r:10},
+{q:"8) Uma barra mede 1 m a 0°C. Com aquecimento de 10°C e coeficiente 0,01, qual será o comprimento final?", r:1.1},
 
-{q:"10) Um material possui massa de 10 kg e ocupa volume de 2 m³. Determine a densidade.",r:5},
+{q:"9) Dois metais diferentes formam uma lâmina bimetálica. Ao aquecer, qual lado dilata mais: o de maior coeficiente (responda 1 para sim)?", r:1},
 
-{q:"11) Um corpo de massa 1 kg recebe calor com variação de temperatura de 20°C. Considere c = 1. Calcule o calor recebido.",r:20},
+{q:"10) Um líquido aumenta seu volume em 0,5 m³ ao ser aquecido. Qual foi a dilatação aparente?", r:0.5},
 
-{q:"12) Uma carga de 10 Coulombs passa por um condutor em 2 segundos. Determine a corrente elétrica.",r:5},
+{q:"11) Um recipiente também dilata 0,1 m³. Qual a dilatação real do líquido?", r:0.6},
 
-{q:"13) Um resistor de 2 ohms está ligado a uma tensão de 10V. Determine a corrente elétrica.",r:5},
+{q:"12) A água apresenta comportamento anômalo entre 0°C e 4°C. Ao aquecer nesse intervalo, o volume aumenta? (1 sim / 0 não)", r:0},
 
-{q:"14) Um sistema realiza 100 Joules de trabalho em 10 segundos. Determine a potência.",r:10},
+{q:"13) A água atinge densidade máxima a quantos graus Celsius?", r:4},
 
-{q:"15) Uma onda possui período de 2 segundos. Determine sua frequência.",r:0.5},
+{q:"14) Um corpo está a 0°C. Qual sua temperatura em Kelvin?", r:273},
 
-{q:"16) Uma onda possui comprimento de 2 metros e frequência de 5 Hz. Determine sua velocidade.",r:10},
+{q:"15) Um corpo está a 100°C. Qual em Kelvin?", r:373},
 
-{q:"17) Uma barra sofre variação de temperatura de 10°C. Considere coeficiente = 1 e comprimento inicial de 2 m. Determine a dilatação.",r:20},
+{q:"16) Converta 50°C para Fahrenheit.", r:122},
 
-{q:"18) Um líquido possui densidade 1, altura 2 m e g = 10. Determine a pressão hidrostática.",r:20},
+{q:"17) Uma barra de 3 m sofre ΔT=10 e coef=0,01. Calcule ΔL.", r:0.3},
 
-{q:"19) Uma força de 10 N atua durante 2 segundos. Determine o impulso.",r:20},
+{q:"18) Área inicial 2 m², coef=0,02, ΔT=10. ΔA?", r:0.4},
 
-{q:"20) Um corpo de massa 2 kg move-se com velocidade de 3 m/s. Determine a quantidade de movimento.",r:6}
+{q:"19) Volume inicial 1 m³, coef=0,03, ΔT=10. ΔV?", r:0.3},
+
+{q:"20) Um termômetro varia de 10°C para 40°C. Qual a variação em Fahrenheit?", r:54}
+
 ];
 
 const prova = document.getElementById("prova");

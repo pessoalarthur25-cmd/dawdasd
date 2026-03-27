@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Prova de Física</title>
+
+<style>
+body {
+    font-family: Arial;
+    background: #f0f0f0;
+    padding: 20px;
+}
+
+.questao {
+    background: white;
+    padding: 15px;
+    margin-bottom: 10px;
+    border-radius: 8px;
+}
+
+input {
+    padding: 5px;
+    width: 120px;
+}
+
+button {
+    padding: 10px 20px;
+    font-size: 16px;
+    cursor: pointer;
+}
+
+.erro {
+    color: red;
+    font-size: 14px;
+}
+</style>
+</head>
+
+<body>
+
+<h1>Prova de Física - 2º Ano</h1>
+
+<div id="prova"></div>
+
+<button onclick="corrigir()">Corrigir</button>
+
+<div id="resultado"></div>
+
+<script>
+const questoes = [
+{q:"1) Um carro viaja de uma cidade a outra percorrendo 100 km em 2 horas. Considerando o movimento uniforme, calcule a velocidade média do carro em km/h.",r:50},
+
+{q:"2) Um ciclista percorre uma estrada reta de 60 metros em 3 segundos. Considerando movimento uniforme, determine sua velocidade em m/s.",r:20},
+
+{q:"3) Um objeto parte do repouso e sofre aceleração constante de 2 m/s² durante 5 segundos. Calcule sua velocidade final.",r:10},
+
+{q:"4) Um corpo é abandonado do repouso em queda livre durante 3 segundos. Considere g = 10 m/s². Determine a velocidade final.",r:30},
+
+{q:"5) Um bloco de massa 2 kg sofre aceleração de 5 m/s². Determine a força resultante aplicada.",r:10},
+
+{q:"6) Uma força constante de 10 N atua sobre um objeto, deslocando-o 5 metros. Calcule o trabalho realizado.",r:50},
+
+{q:"7) Um corpo de massa 2 kg move-se com velocidade de 4 m/s. Determine sua energia cinética.",r:16},
+
+{q:"8) Um objeto de massa 2 kg está a uma altura de 5 metros. Considere g = 10. Determine a energia potencial.",r:100},
+
+{q:"9) Uma força de 20 N atua sobre uma área de 2 m². Calcule a pressão exercida.",r:10},
+
+{q:"10) Um material possui massa de 10 kg e ocupa volume de 2 m³. Determine a densidade.",r:5},
+
+{q:"11) Um corpo de massa 1 kg recebe calor com variação de temperatura de 20°C. Considere c = 1. Calcule o calor recebido.",r:20},
+
+{q:"12) Uma carga de 10 Coulombs passa por um condutor em 2 segundos. Determine a corrente elétrica.",r:5},
+
+{q:"13) Um resistor de 2 ohms está ligado a uma tensão de 10V. Determine a corrente elétrica.",r:5},
+
+{q:"14) Um sistema realiza 100 Joules de trabalho em 10 segundos. Determine a potência.",r:10},
+
+{q:"15) Uma onda possui período de 2 segundos. Determine sua frequência.",r:0.5},
+
+{q:"16) Uma onda possui comprimento de 2 metros e frequência de 5 Hz. Determine sua velocidade.",r:10},
+
+{q:"17) Uma barra sofre variação de temperatura de 10°C. Considere coeficiente = 1 e comprimento inicial de 2 m. Determine a dilatação.",r:20},
+
+{q:"18) Um líquido possui densidade 1, altura 2 m e g = 10. Determine a pressão hidrostática.",r:20},
+
+{q:"19) Uma força de 10 N atua durante 2 segundos. Determine o impulso.",r:20},
+
+{q:"20) Um corpo de massa 2 kg move-se com velocidade de 3 m/s. Determine a quantidade de movimento.",r:6}
+];
+
+const prova = document.getElementById("prova");
+
+questoes.forEach((item,i)=>{
+    const div = document.createElement("div");
+    div.className = "questao";
+    div.innerHTML = `
+        <p>${item.q}</p>
+        <input type="number" step="0.01" id="q${i}">
+        <div id="erro${i}" class="erro"></div>
+    `;
+    prova.appendChild(div);
+});
+
+function corrigir(){
+    let acertos = 0;
+    let erros = 0;
+
+    questoes.forEach((item,i)=>{
+        const valor = parseFloat(document.getElementById("q"+i).value);
+        const erroDiv = document.getElementById("erro"+i);
+
+        erroDiv.innerText = "";
+
+        if(isNaN(valor)){
+            erros++;
+            erroDiv.innerText = "Resposta vazia";
+            return;
+        }
+
+        if(Math.abs(valor - item.r) < 0.01){
+            acertos++;
+            return;
+        }
+
+        erros++;
+        erroDiv.innerText = "Correto: " + item.r;
+    });
+
+    document.getElementById("resultado").innerText =
+        "Acertos: " + acertos + " | Erros: " + erros;
+}
+</script>
+
+</body>
+</html>
